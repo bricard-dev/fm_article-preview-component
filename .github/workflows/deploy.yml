@@ -1,0 +1,35 @@
+name: Build and Deploy SCSS to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install Sass
+        run: npm install -g sass
+
+      - name: Build SCSS
+        run: sass ./scss/main.scss ./dist/css/main.css --no-source-map --style=compressed
+
+      - name: Copy HTML and assets to dist
+        run: |
+          mkdir -p dist
+          cp index.html dist/index.html
+          cp main.js dist/main.js
+          cp -r images dist/images
+
+      - name: Show dist content (debug)
+        run: ls -R dist
+
+      - name: Deploy to GitHub Pages (gh-pages)
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist

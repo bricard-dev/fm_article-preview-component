@@ -13,6 +13,8 @@
     />
 
     <title>Frontend Mentor | Article preview component</title>
+
+    <base href="/fm_article-preview-component/" />
     <link rel="stylesheet" href="./css/main.css" />
     <script src="./main.js" defer></script>
   </head>
@@ -22,7 +24,7 @@
         <div class="card-header">
           <img
             class="card-image"
-            src="/images/drawers.jpg"
+            src="images/drawers.jpg"
             alt="Green dresser with a brown vase of dried
           grass and framed art against a white brick wall"
           />
@@ -39,18 +41,22 @@
               help you make any room feel complete.
             </p>
           </div>
-          <div id="card-footer" class="card-footer active">
+          <div id="card-footer" class="card-footer">
             <div class="author-informations">
-              <div class="author-avatar" aria-label="Michelle Appleton">
-                <img src="/images/avatar-michelle.jpg" alt="" />
+              <div
+                class="author-avatar"
+                role="img"
+                aria-label="Michelle Appleton"
+              >
+                <img src="images/avatar-michelle.jpg" alt="" />
               </div>
               <div class="metadata">
                 <h3 class="author-name">Michelle Appleton</h3>
                 <p class="author-date">28 Jun 2020</p>
               </div>
             </div>
-            <div class="share-panel">
-              <p class="share-label" aria-hidden="true">Share</p>
+            <div id="share-panel" class="share-panel" aria-hidden="true">
+              <p class="share-label">Share</p>
               <div
                 class="social-share"
                 role="group"
