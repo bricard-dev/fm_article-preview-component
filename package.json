@@ -1,8 +1,16 @@
 {
   "scripts": {
-    "sass": "sass --watch scss/main.scss css/main.css"
+    "sass": "sass --watch scss/main.scss css/main.css",
+    "build:scss": "sass scss/main.scss dist/main.css",
+    "copy:html": "cp index.html dist/",
+    "copy:js": "cp main.js dist/",
+    "copy:assets": "cpx \"images/**/*\" dist/images",
+    "build": "pnpm run build:scss && pnpm run copy:html && pnpm run copy:js && pnpm run copy:assets",
+    "deploy": "pnpm run build && gh-pages -d dist"
   },
   "devDependencies": {
+    "cpx": "^1.5.0",
+    "gh-pages": "^6.3.0",
     "sass": "^1.89.1"
   }
 }
