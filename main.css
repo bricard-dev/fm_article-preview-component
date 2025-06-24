@@ -79,9 +79,8 @@ select {
 /* Remove animations/transitions for users who prefer reduced motion */
 @media (prefers-reduced-motion: reduce) {
   * {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
+    animation: none !important;
+    transition: none !important;
     scroll-behavior: auto !important;
   }
 }
@@ -107,22 +106,24 @@ main {
   background-color: white;
   border-radius: 10px;
 }
-.card .card-header {
+
+.card-header {
   height: 200px;
   overflow: hidden;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
 }
-.card .card-header .card-image {
+.card-header .card-image {
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: 0% 25%;
 }
-.card .card-body .card-content {
+
+.card-content {
   padding: 2.25rem 2.0625rem 1.25rem 2rem;
 }
-.card .card-body .card-content .card-title {
+.card-content .card-title {
   margin-bottom: 0.75rem;
   color: hsl(217, 19%, 35%);
   font-size: 1rem;
@@ -130,89 +131,54 @@ main {
   line-height: 24px;
   letter-spacing: 0.2px;
 }
-.card .card-body .card-content .card-description {
+.card-content .card-description {
   color: hsl(214, 17%, 51%);
   font-size: 0.8125rem;
   font-weight: 600;
   line-height: 20px;
 }
-.card .card-body .card-footer {
+
+.card-footer {
   padding: 0.75rem 2rem 1.25rem 2rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-.card .card-body .card-footer.active {
-  padding: 1rem 2rem 1rem 2rem;
-  border-bottom-right-radius: 10px;
-  border-bottom-left-radius: 10px;
-  background-color: hsl(217, 19%, 35%);
-}
-.card .card-body .card-footer.active .author-informations {
-  display: none;
-}
-.card .card-body .card-footer.active .share-panel {
-  display: flex;
-  align-items: center;
-  gap: 1.25rem;
-}
-.card .card-body .card-footer.active .share-panel .share-label {
-  color: hsl(212, 23%, 69%);
-  font-size: 0.8125rem;
-  font-style: normal;
-  font-weight: 600;
-  line-height: normal;
-  letter-spacing: 0.3125rem;
-  text-transform: uppercase;
-}
-.card .card-body .card-footer.active .share-panel .social-share {
+.card-footer .author-informations {
   display: flex;
   align-items: center;
   gap: 1rem;
 }
-.card .card-body .card-footer.active .share-button {
-  background-color: hsl(214, 17%, 51%);
-  color: white;
-}
-.card .card-body .card-footer.active .share-button:hover {
-  background-color: hsl(210, 46%, 95%);
-  color: hsl(214, 17%, 51%);
-}
-.card .card-body .card-footer .author-informations {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
-.card .card-body .card-footer .author-informations .author-avatar {
+.card-footer .author-informations .author-avatar {
   width: 2.5rem;
   height: 2.5rem;
   overflow: hidden;
   border-radius: 50%;
 }
-.card .card-body .card-footer .author-informations .metadata {
+.card-footer .author-informations .metadata {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: 0.1875rem;
 }
-.card .card-body .card-footer .author-informations .metadata .author-name {
+.card-footer .author-informations .metadata .author-name {
   color: hsl(217, 19%, 35%);
   font-size: 0.8125rem;
   font-style: normal;
   font-weight: 700;
   line-height: normal;
 }
-.card .card-body .card-footer .author-informations .metadata .author-date {
+.card-footer .author-informations .metadata .author-date {
   color: hsl(212, 23%, 69%);
   font-size: 0.75rem;
   font-style: normal;
   font-weight: 600;
   line-height: normal;
 }
-.card .card-body .card-footer .share-panel {
+.card-footer .share-panel {
   display: none;
 }
-.card .card-body .card-footer .share-button {
+.card-footer .share-button {
   width: 2rem;
   height: 2rem;
   padding: 0.5625rem 0.5rem;
@@ -228,55 +194,79 @@ main {
   transition: color 0.15s ease, background-color 0.15s ease;
   cursor: pointer;
 }
-.card .card-body .card-footer .share-button:hover {
+.card-footer .share-button:hover {
   background-color: hsl(214, 17%, 51%);
   color: white;
 }
-@media (min-width: 768px) {
+.card-footer.active {
+  padding: 1rem 2rem 1rem 2rem;
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+  background-color: hsl(217, 19%, 35%);
+}
+.card-footer.active .author-informations {
+  display: none;
+}
+.card-footer.active .share-panel {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+.card-footer.active .share-panel .share-label {
+  color: hsl(212, 23%, 69%);
+  font-size: 0.8125rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  letter-spacing: 0.3125rem;
+  text-transform: uppercase;
+}
+.card-footer.active .share-panel .social-share {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.card-footer.active .share-button {
+  background-color: hsl(214, 17%, 51%);
+  color: white;
+}
+.card-footer.active .share-button:hover {
+  background-color: hsl(210, 46%, 95%);
+  color: hsl(214, 17%, 51%);
+}
+
+@media (min-width: 48em) {
   .card {
     width: 730px;
     display: flex;
     flex-shrink: 0;
   }
-  .card .card-header {
+  .card-header {
     width: 100%;
     height: 17.5rem;
     border-top-right-radius: 0;
     border-bottom-left-radius: 10px;
   }
-  .card .card-body .card-content {
+  .card-content {
     padding: 2rem 2.5rem 1.25rem 2.5rem;
   }
-  .card .card-body .card-content .card-title {
+  .card-content .card-title {
     font-size: 1.25rem;
     font-style: normal;
     line-height: 1.75rem;
     letter-spacing: 0.01563rem;
   }
-  .card .card-body .card-content .card-description {
+  .card-content .card-description {
     font-size: 0.8125rem;
     font-style: normal;
     font-weight: 600;
     line-height: 1.25rem;
   }
-  .card .card-body .card-footer {
+  .card-footer {
     position: relative;
     padding: 0rem 2.5rem 2rem 2.5rem;
   }
-  .card .card-body .card-footer.active {
-    padding: 0rem 2.5rem 2rem 2.5rem;
-    background-color: white;
-  }
-  .card .card-body .card-footer.active .author-informations {
-    display: flex;
-  }
-  .card .card-body .card-footer.active .share-panel {
-    gap: 1.3125rem;
-    opacity: 1;
-    transform: translateY(0);
-    pointer-events: auto;
-  }
-  .card .card-body .card-footer .share-panel {
+  .card-footer .share-panel {
     position: absolute;
     right: -4.25rem;
     bottom: 6rem;
@@ -293,7 +283,7 @@ main {
     transition: opacity 0.3s ease, transform 0.3s ease;
     pointer-events: none;
   }
-  .card .card-body .card-footer .share-panel::after {
+  .card-footer .share-panel::after {
     width: 0;
     height: 0;
     border-left: 13px solid transparent;
@@ -305,7 +295,7 @@ main {
     left: 50%;
     transform: translateX(-50%);
   }
-  .card .card-body .card-footer .share-panel .share-label {
+  .card-footer .share-panel .share-label {
     color: hsl(212, 23%, 69%);
     font-size: 0.8125rem;
     font-style: normal;
@@ -314,13 +304,25 @@ main {
     letter-spacing: 0.3125rem;
     text-transform: uppercase;
   }
-  .card .card-body .card-footer .share-panel .social-share {
+  .card-footer .share-panel .social-share {
     display: flex;
     align-items: center;
     gap: 1rem;
   }
+  .card-footer.active {
+    padding: 0rem 2.5rem 2rem 2.5rem;
+    background-color: white;
+  }
+  .card-footer.active .author-informations {
+    display: flex;
+  }
+  .card-footer.active .share-panel {
+    gap: 1.3125rem;
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
 }
-
 .attribution {
   position: absolute;
   bottom: 0;
